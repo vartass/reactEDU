@@ -6,7 +6,7 @@ const HW1 = () => {
         <div className="hw1">
             <p>hello world</p>
             <img src={img} className="img-logo" alt="logo" />
-            <p>default text</p>
+            <p>default text!</p>
         </div>
     );
 };
