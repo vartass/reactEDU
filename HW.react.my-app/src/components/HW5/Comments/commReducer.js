@@ -2,7 +2,7 @@ import {LOADING_END, LOADING_START} from "./asyncCommAction";
 import initialStore from "../../../redux/initialStore";
 
 
-export default function commReducer(commentsFromStore = initialStore.comments, {type, error, payload}) {
+export default function commReducer(commentsFromStore = initialStore.comments, {type, payload}) {
     switch (type) {
         case LOADING_START:
             return {
@@ -14,7 +14,7 @@ export default function commReducer(commentsFromStore = initialStore.comments, {
             return {
                 ...commentsFromStore,
                 loading: false,
-                posts: payload
+                comments: payload
             };
 
         default:

@@ -6,8 +6,6 @@ import {CommAction} from "./asyncCommAction";
 
 class Comments extends Component {
     componentDidMount() {
-        // axios('https://jsonplaceholder.typicode.com/posts')
-        //   .then(res => console.log(res))
         this.props.dispatch(CommAction())
     }
 
@@ -15,7 +13,7 @@ class Comments extends Component {
         const {comments, dispatch} = this.props
 
         const commentsMap = comments.comments.map((comments,i) => {
-            return <p className={"p"} key={comments.id}>{ comments.title } </p>
+            return <p className={"p"} >{ comments.title } </p>
         })
         return (
             <div>
