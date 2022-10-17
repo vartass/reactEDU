@@ -12,6 +12,10 @@ const initialStore = {
     loading: false,
     comments:[]
   },
+  todos:{
+    loading: false,
+    todos:[]
+  },
 
   list:[1,2,6]
 

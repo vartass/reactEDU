@@ -11,10 +11,11 @@ class Comments extends Component {
         const {comments} = this.props
 
         const commentsMap = comments.comments.map((comment) => {
-            return <p key={comment.id} >{ comment.name } </p>
+            return  <p key={comment.id} >{ comment.name } </p>
         })
         return (
             <div>
+                <h1>COMMENTS</h1>
                 {commentsMap}
             </div>
         )
