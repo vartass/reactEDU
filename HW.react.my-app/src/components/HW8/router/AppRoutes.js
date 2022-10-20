@@ -9,14 +9,13 @@ import Todo from "../../HW6/ToDo/Todo";
 
 
 const AppRoutes = () => {
-    return(
+    return (
     <>
         <Routes>
             <Route path="/" element={<Layout/>}>
                 <Route index element={<Home/>}/>
                 <Route  path="comments" element={<Comments/>}/>
                 <Route  path="todos" element={<Todo/>}/>
-
 
             </Route>
 
