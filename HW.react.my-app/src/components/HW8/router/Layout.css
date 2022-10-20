@@ -1,0 +1,17 @@
+
+a{
+    text-decoration: none;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+//height: 100vh;
+}
+
+main{
+//overflow-y: scroll;
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+//height: 100%;
+}
