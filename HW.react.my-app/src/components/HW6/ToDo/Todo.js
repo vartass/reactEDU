@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {TodoAction} from "./todoAction";
 import axios from "axios";
+import {Link} from "@mui/material";
 
 const Todo = (props) => {
     const dispatch = useDispatch();
@@ -20,15 +21,15 @@ const Todo = (props) => {
 
     const todos = useSelector((store)=>(store.todos));
     const todosMapRedux = todos.todos.map((todo) => {
-        return <p className={"p"} key={todo.id}>{todo.title} </p>
+        return <Link sx={{ color: 'black'}}><p className={"p"} key={todo.id}><li key={todo.id}>{todo.title}</li></p></Link>
     })
 
     return (
         <div>
             <h1>TODOS</h1>
             {todosMapRedux}
-            <h1>TODOS</h1>
-            {todosMap}
+            {/*<h1>TODOS</h1>*/}
+            {/*{todosMap}*/}
         </div>
     );
 };
