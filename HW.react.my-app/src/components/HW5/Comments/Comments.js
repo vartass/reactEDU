@@ -15,14 +15,14 @@ const Comments = () => {
 
     const lastCommentIndex = currentPage * commentsPerPage
     const firstPostIndex = lastCommentIndex - commentsPerPage
-    const currentComm = comments.comments.slice(firstPostIndex,lastCommentIndex)
+    const currentComms = comments.comments.slice(firstPostIndex,lastCommentIndex)
 
     const paginate = pageNumber =>{setCurrentPage(pageNumber)}
 
     return (
         <div>
             <h1>COMMENTS</h1>
-            <CommentsList comments={currentComm}/>
+            <CommentsList comments={currentComms}/>
             <AddPagination
                 currentPage={currentPage}
                 elemPerPage={commentsPerPage}

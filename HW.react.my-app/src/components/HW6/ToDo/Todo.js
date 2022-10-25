@@ -16,14 +16,14 @@ const Todo = (props) => {
 
     const lastTodoIndex = currentPage * todosPerPage
     const firstTodoIndex = lastTodoIndex - todosPerPage
-    const currentTodo = todos.todos.slice(firstTodoIndex,lastTodoIndex)
+    const currentTodos = todos.todos.slice(firstTodoIndex,lastTodoIndex)
 
     const paginate = pageNumber =>{setCurrentPage(pageNumber)}
 
     return (
         <div>
             <h1>TODOS</h1>
-            <TodosList todos={currentTodo}/>
+            <TodosList todos={currentTodos}/>
             <AddPagination
                 currentPage={currentPage}
                 elemPerPage={todosPerPage}

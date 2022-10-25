@@ -17,7 +17,7 @@ const Post = () => {
 
     const lastPostIndex = currentPage * postsPerPage
     const firstPostIndex = lastPostIndex - postsPerPage
-    const currentPost = posts.posts.slice(firstPostIndex,lastPostIndex)
+    const currentPosts = posts.posts.slice(firstPostIndex,lastPostIndex)
 
     const paginate = pageNumber =>{setCurrentPage(pageNumber)}
 
@@ -25,7 +25,7 @@ const Post = () => {
         <div>
             <h1>POSTS</h1>
             {/*{postsMap}*/}
-            <PostList posts={currentPost}/>
+            <PostList posts={currentPosts}/>
             <AddPagination
                 currentPage={currentPage}
                 elemPerPage={postsPerPage}
