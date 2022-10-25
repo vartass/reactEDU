@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {CommAction} from "./asyncCommAction";
+import {CommAction} from "./commAction";
 import CommentsList from "./CommentsList";
 import AddPagination from "../../HW8/Pagination/Pagination";
 

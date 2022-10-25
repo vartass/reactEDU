@@ -1,4 +1,4 @@
-import {LOADING} from "./asyncCommAction";
+import {LOADING} from "./commAction";
 import initialStore from "../../../redux/initialStore";
 
 
