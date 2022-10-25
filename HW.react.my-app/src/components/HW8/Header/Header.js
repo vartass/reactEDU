@@ -22,6 +22,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
+import store from "../../../redux/configStore";
+// import auth from "../../Auth/Auth";
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Login', 'Logout'];
@@ -40,15 +42,18 @@ const Header = () => {
   };
 
   const handlerModalOpen = () => {
-    // e.preventDefault()
     setOpenModal(true);
     console.log(openModal);
   };
   const handlerModalClose = () => {
-    // e.preventDefault()
     setOpenModal(false);
     console.log(openModal);
+    // loginToStore();
   };
+  // const loginToStore =() =>{
+  //   // TextField.name =  (store) => auth.name;
+  //   console.log(Login.text);
+  // }
   // useEffect(()=>{
   //   handlerModalOpen();
   //   handlerModalClose();
@@ -106,7 +111,7 @@ const Header = () => {
                 color: 'white',
                 display: 'block',
                 fontSize: 20,
-                textDecoration: '#ffffff'
+                // textDecoration: '#ffffff'
               }
             }>
               <Link to="/comments">Comments</Link>
@@ -118,7 +123,7 @@ const Header = () => {
                 color: 'white',
                 display: 'block',
                 fontSize: 20,
-                textDecoration: '#ffffff'
+                // textDecoration: '#ffffff'
               }
             }>
               <Link to="/todos">To do</Link>
@@ -157,27 +162,23 @@ const Header = () => {
                       autoFocus
                       margin="dense"
                       id="name"
-                      label="Login Name"
+                      label="Login"
                       type="text"
                       fullWidth
-                      // value
+                      // onInput
+                      value
                     />
-                    {/*<label>Log in</label>*/}
-                    {/*<label sx={{height: 30}}>Login:*/}
-                    {/*  <input sx={{height: 30}} type="text" id={"login"} name={"login"}/>*/}
-                    {/*</label>*/}
-                    {/*<TextField*/}
-                    {/*  autoFocus*/}
-                    {/*  margin="dense"*/}
-                    {/*  id="pass"*/}
-                    {/*  label="Password"*/}
-                    {/*  type="password"*/}
-                    {/*  fullWidth*/}
-                    {/*/>*/}
+                    <TextField
+                      margin="dense"
+                      id="pass"
+                      label="Password"
+                      type="password"
+                      fullWidth
+                    />
                   </DialogContent>
                   <DialogActions>
                         <Button onClick={handlerModalClose}>Cancel</Button>
-                        <Button >Log in</Button>
+                        <Button onClick={handlerModalClose} >Log in</Button>
                   </DialogActions>
 
                 </Dialog>

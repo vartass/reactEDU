@@ -1,35 +1,35 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {TodoAction} from "./todoAction";
-import axios from "axios";
-import {Link} from "@mui/material";
+import TodosList from "./TodosList";
+import AddPagination from "../../HW8/Pagination/Pagination";
 
 const Todo = (props) => {
     const dispatch = useDispatch();
-
-    let [todoTitle, setTodoTitle] = useState();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [todosPerPage] = useState(10);
     useEffect(()=>{
         dispatch(TodoAction())
-        axios('https://jsonplaceholder.typicode.com/todos')
-            .then(res =>
-                setTodoTitle(res.data)
-            )
-
-        },[])
-
-    const todosMap = todoTitle?.map((todo)=> <p className={"p"} key={todo.id}>{todo.title} </p>)
+    },[])
 
     const todos = useSelector((store)=>(store.todos));
-    const todosMapRedux = todos.todos.map((todo) => {
-        return <Link sx={{ color: 'black'}}><p className={"p"} key={todo.id}><li key={todo.id}>{todo.title}</li></p></Link>
-    })
+
+    const lastTodoIndex = currentPage * todosPerPage
+    const firstTodoIndex = lastTodoIndex - todosPerPage
+    const currentTodo = todos.todos.slice(firstTodoIndex,lastTodoIndex)
+
+    const paginate = pageNumber =>{setCurrentPage(pageNumber)}
 
     return (
         <div>
             <h1>TODOS</h1>
-            {todosMapRedux}
-            {/*<h1>TODOS</h1>*/}
-            {/*{todosMap}*/}
+            <TodosList todos={currentTodo}/>
+            <AddPagination
+                currentPage={currentPage}
+                elemPerPage={todosPerPage}
+                totalElem={ todos.todos.length}
+                paginate={paginate}
+            />
         </div>
     );
 };

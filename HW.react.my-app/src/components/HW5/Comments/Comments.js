@@ -1,24 +1,34 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
-import {Link} from "@mui/material";
+import {useDispatch, useSelector} from "react-redux";
+import {CommAction} from "./asyncCommAction";
+import CommentsList from "./CommentsList";
+import AddPagination from "../../HW8/Pagination/Pagination";
 
 const Comments = () => {
-    let [comments, setComments] = useState();
-
+    const dispatch = useDispatch();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [commentsPerPage] = useState(10);
     useEffect(()=>{
-        axios('https://jsonplaceholder.typicode.com/comments')
-            .then(res =>
-                setComments(res.data)
-            )
+        dispatch(CommAction())
     },[])
+    const comments = useSelector((store)=>store.comments);
 
-    const commentsMap = comments?.map((comment)=> <Link sx={{ color: 'black'}}>
-        <p className={"p"} key={comment.id}><li key={comment.id}>{comment.name}</li></p>
-    </Link>)
+    const lastCommentIndex = currentPage * commentsPerPage
+    const firstPostIndex = lastCommentIndex - commentsPerPage
+    const currentComm = comments.comments.slice(firstPostIndex,lastCommentIndex)
+
+    const paginate = pageNumber =>{setCurrentPage(pageNumber)}
+
     return (
         <div>
             <h1>COMMENTS</h1>
-            {commentsMap}
+            <CommentsList comments={currentComm}/>
+            <AddPagination
+                currentPage={currentPage}
+                elemPerPage={commentsPerPage}
+                totalElem={comments.comments.length}
+                paginate={paginate}
+            />
         </div>
     );
 };

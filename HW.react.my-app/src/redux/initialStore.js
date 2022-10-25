@@ -1,9 +1,9 @@
 const initialStore = {
 
-  auth: false,
-  title: "Hello from redux! I'm not happy to be here...",
-
-  counter: 0,
+  auth: {
+    name: null,
+    modal: false
+  },
   posts:{
     loading: false,
     posts:[]
@@ -17,7 +17,7 @@ const initialStore = {
     todos:[]
   },
 
-  list:[1,2,6]
+  // list:[1,2,6]
 
 };
 
