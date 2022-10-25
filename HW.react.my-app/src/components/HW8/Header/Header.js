@@ -46,7 +46,7 @@ const Header = () => {
     console.log(openModal);
   };
   const handlerModalClose = () => {
-    // setOpenModal(false);
+    setOpenModal(false);
     // console.log(name.value);
     console.log(openModal);
     // loginToStore();
