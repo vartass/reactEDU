@@ -9,6 +9,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {useDispatch} from "react-redux";
 import {PostAction} from "./addPostAction";
+import { v4 as uuidv4 } from 'uuid';
 
 const AddPost = ({props}) => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const AddPost = ({props}) => {
   };
   const handlerAddPost = ()=>{
     setInputValue(inputValue);
-    dispatch(PostAction({id:101, title:inputValue}))
+    dispatch(PostAction({id:uuidv4(), title:inputValue}))
     handlerModalClose()
   }
 
