@@ -25,14 +25,15 @@ import TextField from "@mui/material/TextField";
 import store from "../../../redux/configStore";
 // import auth from "../../Auth/Auth";
 
-const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Login', 'Logout'];
 
 const Header = () => {
 
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [openModal,setOpenModal] = useState(false)
-  // const name = useInput("")
+  const [openModal, setOpenModal] = useState(false)
+  const [name, setName] = useState("")
+  const [pass, setPass] = useState("")
+  const [btnName, setBtnName] = useState("Login")
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -43,33 +44,21 @@ const Header = () => {
 
   const handlerModalOpen = () => {
     setOpenModal(true);
-    console.log(openModal);
+    setName("")
+
   };
   const handlerModalClose = () => {
     setOpenModal(false);
-    // console.log(name.value);
-    console.log(openModal);
-    // loginToStore();
   };
-  // const loginToStore =() =>{
-  //   // TextField.name =  (store) => auth.name;
-  //   console.log(Login.text);
-  // }
-  // useEffect(()=>{
-  //   handlerModalOpen();
-  //   handlerModalClose();
-  //
-  //
-  // },[])
-  // const handlerModalOpen = (event) => {
-  //   setOpenModal(event.currentTarget);
-  //   console.log(openModal);
-  // };
-  // const handlerModalClose = () => {
-  //   setOpenModal(null);
-  //   console.log(openModal);
-  // };
-
+  const handlerLogin = () =>{
+    setOpenModal(false);
+    setBtnName(name);
+    handleCloseUserMenu();
+  }
+  const handlerLogout = () =>{
+    setBtnName("Login");
+    handleCloseUserMenu();
+  }
 
   return (
     // position="static"
@@ -112,7 +101,6 @@ const Header = () => {
                 color: 'white',
                 display: 'block',
                 fontSize: 20,
-                // textDecoration: '#ffffff'
               }
             }>
               <Link to="/comments">Comments</Link>
@@ -124,7 +112,6 @@ const Header = () => {
                 color: 'white',
                 display: 'block',
                 fontSize: 20,
-                // textDecoration: '#ffffff'
               }
             }>
               <Link to="/todos">To do</Link>
@@ -154,22 +141,25 @@ const Header = () => {
               onClose={handleCloseUserMenu}
             >
               <MenuItem key={settings.id}>
-                <Button sx={{fontSize: 15}} onClick={handlerModalOpen}>LogIn</Button>
-                <Dialog open={!!openModal} onClose={handlerModalClose} aria-labelledby={"form-dialog-title"}>
+                <Button sx={{fontSize: 15}} onClick={handlerModalOpen}>{btnName}</Button>
+                <Dialog open={!!openModal} onClose={handlerModalClose}
+                        aria-labelledby={"form-dialog-title"}>
                   <DialogTitle id="form-dialog-title">Authorization</DialogTitle>
                   <DialogContent>
                     <DialogContentText>Log in to site</DialogContentText>
                     <TextField
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       autoFocus
                       margin="dense"
                       id="name"
                       label="Login"
                       type="text"
                       fullWidth
-                      // onInput
-
                     />
                     <TextField
+                      value={pass}
+                      onChange={(e) => setPass(e.target.value)}
                       margin="dense"
                       id="pass"
                       label="Password"
@@ -178,13 +168,13 @@ const Header = () => {
                     />
                   </DialogContent>
                   <DialogActions>
-                        <Button onClick={handlerModalClose}>Cancel</Button>
-                        <Button onClick={handlerModalClose} >Log in</Button>
+                    <Button onClick={handlerModalClose}>Cancel</Button>
+                    <Button onClick={handlerLogin}>Log in</Button>
                   </DialogActions>
 
                 </Dialog>
               </MenuItem>
-              <MenuItem key={settings.id} onClick={handleCloseUserMenu}>
+              <MenuItem key={settings.id} onClick={handlerLogout}>
                 <Button sx={{fontSize: 15}}>LogOut</Button>
               </MenuItem>
 
@@ -194,23 +184,5 @@ const Header = () => {
       </Container>
     </AppBar>
   )
-
-  // return (
-  //
-  //
-  //
-  // <>
-  //     <div className="nav">
-  //         <Link to="/">Home</Link>
-  //
-  //         <NavLink to="/comments">Comments</NavLink>
-  //         <NavLink to="/todos">To do</NavLink>
-  //
-  //
-  //     </div>
-  //
-  // </>
-  //
-  // );
 }
 export default Header
