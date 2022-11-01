@@ -9,12 +9,25 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {PostAction} from "./addPostAction";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
-const AddPost = () => {
+const AddPost = (props) => {
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
-  const [inputValue,setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  // let actionItem;
+  // console.log(props);
+  let actionItem = PostAction({id:uuidv4(), title:inputValue});
+
+  const switchItem = (actionItem) => {
+    switch (props) {
+      case "itemPost":
+        return PostAction({id: uuidv4(), title: inputValue});
+      default:
+        return '';
+    }
+
+  }
 
   const handlerModalOpen = () => {
     setOpenModal(true);
@@ -24,9 +37,10 @@ const AddPost = () => {
     setOpenModal(false);
     setInputValue("")
   };
-  const handlerAddPost = ()=> {
+  const handlerAddPost = () => {
     setInputValue(inputValue);
-    dispatch(PostAction({id:uuidv4(), title:inputValue}))
+    switchItem(actionItem);
+    dispatch(actionItem);
     handlerModalClose()
   }
 

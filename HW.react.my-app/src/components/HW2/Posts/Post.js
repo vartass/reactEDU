@@ -11,6 +11,7 @@ const Post = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
+  const itemPost = "itemPost"
 
   useEffect(() => {
     dispatch(PostAction())
@@ -30,7 +31,7 @@ const Post = () => {
     <div>
       <h1>POSTS</h1>
       <RequireAuth>
-        <AddPost/>
+        <AddPost props={"itemPost"}/>
       </RequireAuth>
       <PostList posts={currentPosts}/>
       <AddPagination
