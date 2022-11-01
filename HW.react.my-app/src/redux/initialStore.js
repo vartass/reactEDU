@@ -2,7 +2,7 @@ const initialStore = {
 
   auth: {
     name: "",
-    // modal: false
+    modal: false
   },
   posts:{
     loading: false,

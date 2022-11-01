@@ -6,11 +6,13 @@ const authReducer = (auth = initialStore.auth, {type, payload}) => {
         case LOGIN:
             return {
                 ...auth,
+                modal: true,
                 name: payload
             };
         case LOGOUT:
             return {
                 ...auth,
+                modal: false,
                 name: ""
             };
         default:

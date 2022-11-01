@@ -153,7 +153,7 @@ const Header = () => {
               onClose={handleCloseUserMenu}
             >
               <MenuItem key={settings.id}>
-                <Button sx={{fontSize: 15}} onClick={!!authName?handlerModalClose:handlerModalOpen}>{btnName}</Button>
+                <Button sx={{fontSize: 15}} onClick={!authName.modal?handlerModalOpen:handlerModalClose}>{btnName}</Button>
                 <Dialog open={!!openModal} onClose={handlerModalClose}
                         aria-labelledby={"form-dialog-title"}>
                   <DialogTitle id="form-dialog-title">Authorization</DialogTitle>
