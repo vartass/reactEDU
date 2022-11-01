@@ -7,15 +7,14 @@ import DialogContentText from "@mui/material/DialogContentText";
 import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {PostAction} from "./addPostAction";
 import { v4 as uuidv4 } from 'uuid';
 
-const AddPost = ({props}) => {
+const AddPost = () => {
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const [inputValue,setInputValue] = useState("");
-  // props = inputValue;
 
   const handlerModalOpen = () => {
     setOpenModal(true);
@@ -25,7 +24,7 @@ const AddPost = ({props}) => {
     setOpenModal(false);
     setInputValue("")
   };
-  const handlerAddPost = ()=>{
+  const handlerAddPost = ()=> {
     setInputValue(inputValue);
     dispatch(PostAction({id:uuidv4(), title:inputValue}))
     handlerModalClose()

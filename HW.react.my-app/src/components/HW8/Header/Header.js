@@ -1,9 +1,7 @@
 import {Link, NavLink} from "react-router-dom";
 import "./Header.css"
 import React, {useEffect, useState} from 'react';
-import useInput from "../../hooks/useInput";
 import {connect, useDispatch, useSelector} from "react-redux";
-// import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -22,18 +20,19 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
-import store from "../../../redux/configStore";
-// import auth from "../../Auth/Auth";
+import {LoginAction, LogoutAction} from "../../Auth/authAction";
+import { v4 as uuidv4 } from 'uuid';
 
 const settings = ['Profile', 'Login', 'Logout'];
 
 const Header = () => {
-
+  const dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [openModal, setOpenModal] = useState(false)
   const [name, setName] = useState("")
   const [pass, setPass] = useState("")
   const [btnName, setBtnName] = useState("Login")
+  const authName = useSelector((store) => store.auth);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -50,13 +49,15 @@ const Header = () => {
   const handlerModalClose = () => {
     setOpenModal(false);
   };
-  const handlerLogin = () =>{
+  const handlerLogin = () => {
     setOpenModal(false);
     setBtnName(name);
+    dispatch(LoginAction(name));
     handleCloseUserMenu();
   }
-  const handlerLogout = () =>{
+  const handlerLogout = () => {
     setBtnName("Login");
+    dispatch(LogoutAction());
     handleCloseUserMenu();
   }
 
@@ -83,6 +84,17 @@ const Header = () => {
           >HW 8/9</Typography>
 
           <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+            <Button sx={
+              {
+                my: 1,
+                mx: 1,
+                color: 'white',
+                display: 'block',
+                fontSize: 20,
+              }
+            }>
+              <Link to="/">Home</Link>
+            </Button>
             <Button sx={
               {
                 my: 1,
@@ -121,7 +133,7 @@ const Header = () => {
           <Box sx={{flexGrow: 0}}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                <Avatar alt="L" src="/static/images/avatar/2.jpg"/>
+                <Avatar alt={authName.name} src="/static/images/avatar/2.jpg"/>
               </IconButton>
             </Tooltip>
             <Menu
@@ -141,7 +153,7 @@ const Header = () => {
               onClose={handleCloseUserMenu}
             >
               <MenuItem key={settings.id}>
-                <Button sx={{fontSize: 15}} onClick={handlerModalOpen}>{btnName}</Button>
+                <Button sx={{fontSize: 15}} onClick={!!authName?handlerModalClose:handlerModalOpen}>{btnName}</Button>
                 <Dialog open={!!openModal} onClose={handlerModalClose}
                         aria-labelledby={"form-dialog-title"}>
                   <DialogTitle id="form-dialog-title">Authorization</DialogTitle>

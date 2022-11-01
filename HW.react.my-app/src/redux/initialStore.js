@@ -1,8 +1,8 @@
 const initialStore = {
 
   auth: {
-    name: null,
-    modal: false
+    name: "",
+    // modal: false
   },
   posts:{
     loading: false,

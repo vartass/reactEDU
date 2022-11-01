@@ -4,13 +4,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {PostAction} from "./postsAction";
 import AddPagination from "../../HW8/Pagination/Pagination";
 import PostList from "./PostList";
-import Dialog from "@mui/material/Dialog";
 import AddPost from "./AddPost";
+import RequireAuth from "../../HW8/router/RequireAuth";
 
 const Post = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
+
   useEffect(() => {
     dispatch(PostAction())
   }, [])
@@ -28,8 +29,9 @@ const Post = () => {
   return (
     <div>
       <h1>POSTS</h1>
-      {/*{postsMap}*/}
-      <AddPost props={posts[1]}/>
+      <RequireAuth>
+        <AddPost/>
+      </RequireAuth>
       <PostList posts={currentPosts}/>
       <AddPagination
         currentPage={currentPage}

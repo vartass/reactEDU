@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {LOGIN, login, logout, ModalAuthCloseCreate, ModalAuthOpenCreate} from "./actions";
+import {LOGIN, LOGOUT, logout, ModalAuthCloseCreate, ModalAuthOpenCreate} from "./authAction";
 import Modal from "../Modal/Modal";
 import {useNavigate} from "react-router-dom";
 // import Modal from "../Modal/Modal";

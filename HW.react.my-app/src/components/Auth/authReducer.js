@@ -1,19 +1,18 @@
-import {LOGIN, LOGOUT, MODALAUTHCLOSE, MODALAUTHOPEN} from "./actions";
+import {LOGIN, LOGOUT} from "./authAction";
 import initialStore from "../../redux/initialStore";
 
-const authReducer = (auth = initialStore.auth, action) => {
-    switch (action.type) {
+const authReducer = (auth = initialStore.auth, {type, payload}) => {
+    switch (type) {
         case LOGIN:
-            return {...auth, name: "admin"};
+            return {
+                ...auth,
+                name: payload
+            };
         case LOGOUT:
-            return {...auth, name: false};
-
-        case MODALAUTHOPEN:
-            return {...auth, modal: true};
-        case MODALAUTHCLOSE:
-            return {...auth, modal: false};
-
-
+            return {
+                ...auth,
+                name: ""
+            };
         default:
             return auth;
     }
