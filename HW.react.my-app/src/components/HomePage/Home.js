@@ -5,7 +5,7 @@ import './Home.css';
 const Home = () => {
   return (
     <div className="homePage">
-      <p>THIS HOME PAGE</p>
+      <p>MY HOME PAGE</p>
 
       <Hearts
         height="500"
